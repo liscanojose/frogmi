@@ -4,6 +4,13 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 ruby '2.4.1'
 
 gem 'httparty' # For HTTP requests. Used for API calls EARTHQUAKE.
+gem 'will_paginate', '~> 3.1.1'
+gem 'api-pagination'
+gem 'kaminari'
+gem 'pagy'
+gem 'pager_api'
+gem 'jbuilder'
+gem 'will_paginate-bootstrap' 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.2.0'
 # Use postgresql as the database for Active Record

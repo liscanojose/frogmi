@@ -1,6 +1,6 @@
 class Feature < ApplicationRecord
 	require 'httparty'
-	has_many :comments, dependent: :destroy
+	has_many :comments, dependent: :delete_all
 	API_URL_EARTHQUAKE = "https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=#{Time.now.strftime("%Y-%m-%d")}"
 	validates :url, :mag_type, presence: true, allow_blank: true
 	validates_numericality_of :mag, greater_than_or_equal_to: -1, less_than_or_equal_to: 10, on: :create
