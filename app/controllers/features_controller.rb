@@ -22,7 +22,7 @@ class FeaturesController < ApplicationController
       mag_type = params[:mag_type]
     end
     if @page && @current_page
-        @features = Feature.where(mag_type: mag_type).paginate(page: @current_page, per_page: @per_page)
+      @features = Feature.where(mag_type: mag_type).paginate(page: @current_page, per_page: @per_page)
       total_pages = (Feature.count / @per_page).ceil
     else
       @features = Feature.where(mag_type: mag_type)
