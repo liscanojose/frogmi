@@ -2,6 +2,7 @@ Rails.application.routes.draw do
   resources :features, only: [:index] do
     member do
       post '/create_message', to: 'features#create_message'
+      get 'comments', to: 'features#comments'
     end
   end
   #get 'features/index'

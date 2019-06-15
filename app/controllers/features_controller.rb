@@ -1,5 +1,5 @@
 class FeaturesController < ApplicationController
-  before_action :set_feature, only: %i[create_message]
+  before_action :set_feature, only: %i[create_message comments]
   before_action :set_pagination, only: %i[index]
   
   def index
@@ -37,12 +37,17 @@ class FeaturesController < ApplicationController
   end
 
   def create_message
-    message = params[:message].to_s
-    unless @feature.comments.new(message: message).save
-      render json: {errors: @feature.errors.to_hash(true)}, status: :unprocessable_entity
+    message = params[:comment][:message].to_s
+    comment = @feature.comments.new(message: message)
+    unless comment.save
+      render json: {errors: comment.errors}, status: :unprocessable_entity
     else
-      render json: {feature:  @feature, comments: @feature.comments}, status: 200
+      redirect_to "http://localhost:3001/features/#{@feature.id}/comments"
     end
+  end
+
+  def comments
+    render 'features/comments.json.jbuilder'
   end
   private
 
